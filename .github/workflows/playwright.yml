@@ -13,6 +13,10 @@ jobs:
     - uses: actions/setup-node@v4
       with:
         node-version: lts/*
+      env:
+        USER_ID: ${{ secrets.USER_ID }}
+        BASE_URL: ${{ secrets.BASE_URL }}
+        USER_PWD: ${{ secrets.USER_PWD }}
     - name: Install dependencies
       run: npm ci
     - name: Install Playwright Browsers

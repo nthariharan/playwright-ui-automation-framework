@@ -21,7 +21,7 @@ export default defineConfig({
   reporter : 'html',
   use:{
     browserName : 'chromium',
-    headless : false,
+    headless : true,
     trace : 'on',
     baseURL: process.env.BASE_URL,
     actionTimeout : 10*1000

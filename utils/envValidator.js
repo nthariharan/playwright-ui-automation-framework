@@ -1,4 +1,4 @@
-export default async function envValidator(){
+export default function envValidator(){
    
     const envVars=[
         "USER_ID",

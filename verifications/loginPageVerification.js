@@ -1,6 +1,5 @@
 import { expect } from "@playwright/test";
-import login
- from "../pageObjects/login";
+import login from "../pageObjects/login";
 class loginPageVerification{
     
     /**

@@ -9,7 +9,7 @@ if (existsSync('.env')){
 }
 
 //Check env variables
-envValidator();
+await envValidator();
 
 export default defineConfig({
   

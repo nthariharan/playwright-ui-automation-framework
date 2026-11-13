@@ -1,3 +1,5 @@
+import { expect } from "@playwright/test";
+
 class dashboard{
     /**
      * 
@@ -14,6 +16,22 @@ class dashboard{
         
     }
 
+    /**
+     * @param {object} testData 
+     */
+
+    async addItem(testData){
+        this.tgtProduct = this.productCards.filter({hasText : testData.product});
+        this.prdtAddToCart = this.tgtProduct.getByRole("button",{name: "add to cart"})
+        await expect(this.tgtProduct).toBeVisible();
+        await expect(this.prdtAddToCart).toBeVisible();
+        await expect(this.prdtAddToCart).toBeEnabled();
+        await this.prdtAddToCart.click();
+    }
+
+    async goToCart(){
+        await this.navCart.click();
+    }
 
 }
 

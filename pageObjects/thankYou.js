@@ -18,7 +18,6 @@ class thankYou {
     async getOrderID() {
         await expect(this.txtThankYou).toBeVisible();
         this.OrderId = (await this.txtOrder.textContent()).split('|')[1].trim();
-        console.log("Order ID =>",this.OrderId);
         return this.OrderId;
     }
 

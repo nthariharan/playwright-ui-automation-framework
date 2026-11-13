@@ -16,9 +16,7 @@ import dashboardPageVerification from '../verifications/dashboardPageVerificatio
 //test data import
 import testdata from "../testData/data1.json" with {type: "json"};
 
-for (const inputData of testdata) {
-    console.log(inputData);
-}
+
 //Added loop to include multiple testdata
 for (const inputData of testdata) {
     test(`Login,create order and Verify orderDetails - For ${inputData.product} `, async ({ page }) => {

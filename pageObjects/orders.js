@@ -17,11 +17,8 @@ class orders {
 
         await this.orderRows.first().waitFor();
         let orderCount = await this.orderRows.count();
-        console.log("Order count =>", orderCount);
         for (let i = 0; i < orderCount; i++) {  //These are old routines to be replaced by getby locators later 
-            console.log(await this.orderRows.nth(i).locator('th').textContent());
             if (this.orderRows.nth(i).getByText(OrderID)) {
-                console.log("in if loop");
                 await this.orderRows.nth(i).getByRole("button", { name: "View" }).click();
                 break;
 

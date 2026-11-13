@@ -1,5 +1,15 @@
-{
-    "product" : "ADIDAS ORIGINAL",
-    "country":"India"
+[
+    {
+        "product": "ZARA COAT 3",
+        "country": "Antarctica"
+    },
+    {
+        "product": "ADIDAS ORIGINAL",
+        "country": "India"
+    },
+    {
+        "product": "iphone 13 pro",
+        "country": "Saudi Arabia"
+    }
     
-}
+]

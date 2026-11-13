@@ -1,4 +1,4 @@
-import {test} from '@playwright/test';
+import { test } from '@playwright/test';
 
 //Page Object imports
 import login from '../pageObjects/login';
@@ -16,29 +16,35 @@ import dashboardPageVerification from '../verifications/dashboardPageVerificatio
 //test data import
 import testdata from "../testData/data1.json" with {type: "json"};
 
+for (const inputData of testdata) {
+    console.log(inputData);
+}
+//Added loop to include multiple testdata
+for (const inputData of testdata) {
+    test(`Login,create order and Verify orderDetails - For ${inputData.product} `, async ({ page }) => {
+        await page.goto("./");
+        const loginPage = new login(page);
+        const dashBoard = new dashboard(page);
+        const cartPage = new cart(page);
+        const thankYouPage = new thankYou(page);
+        const ordersPage = new orders(page);
 
-test("login,create order and Verify orderDetails",async({page})=>{
-    await page.goto("./");    
-    const loginPage= new login(page);
-    const dashBoard = new dashboard(page);
-    const cartPage = new cart(page);
-    const thankYouPage = new thankYou(page);
-    const ordersPage = new orders(page);
+        const loginPageVerify = new loginPageVerification(loginPage);
+        const dashBoardVerify = new dashboardPageVerification(dashBoard);
 
-    const loginPageVerify= new loginPageVerification(loginPage);
-    const dashBoardVerify = new dashboardPageVerification(dashBoard);
+        await loginPageVerify.verifyLoginPageLayout();
+        await loginPage.userLogin();
+        await dashBoardVerify.verifyDashboardPageLayout();
+        await dashBoard.addItem(inputData);
+        await dashBoard.goToCart();
+        await cartPage.cartCheckOut();
+        await cartPage.verifyPaymentUserName();
+        await cartPage.enterShipmentCountry(inputData.country);
+        const orderID = await thankYouPage.getOrderID();
+        console.log("Order created successfully with Ref# ", orderID);
+        await thankYouPage.goToOrders();
+        await ordersPage.viewMyOrder(orderID);
 
-    await loginPageVerify.verifyLoginPageLayout();
-    await loginPage.userLogin();
-    await dashBoardVerify.verifyDashboardPageLayout();  
-    await dashBoard.addItem(testdata);
-    await dashBoard.goToCart();
-    await cartPage.cartCheckOut();
-    await cartPage.verifyPaymentUserName();
-    await cartPage.enterShipmentCountry(testdata.country);
-    const orderID = await thankYouPage.getOrderID();
-    console.log("Order created successfully with Ref# ", orderID);
-    await thankYouPage.goToOrders();
-    await ordersPage.viewMyOrder(orderID);
+    });
+}
 
-});

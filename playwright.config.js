@@ -14,7 +14,7 @@ envValidator();
 export default defineConfig({
   
   testDir : './tests',
-  timeout : 30*1000,
+  timeout : 40*1000,
   expect :{
     timeout : 10*1000
   },

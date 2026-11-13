@@ -5,6 +5,7 @@ import login from '../pageObjects/login';
 import dashboard from '../pageObjects/dashboard';
 import cart from '../pageObjects/cart';
 import thankYou from '../pageObjects/thankYou';
+import orders from '../pageObjects/orders';
 
 //Page Verification imports
 import loginPageVerification from '../verifications/loginPageVerification';
@@ -22,6 +23,7 @@ test("login,create order and Verify orderDetails",async({page})=>{
     const dashBoard = new dashboard(page);
     const cartPage = new cart(page);
     const thankYouPage = new thankYou(page);
+    const ordersPage = new orders(page);
 
     const loginPageVerify= new loginPageVerification(loginPage);
     const dashBoardVerify = new dashboardPageVerification(dashBoard);
@@ -36,5 +38,7 @@ test("login,create order and Verify orderDetails",async({page})=>{
     await cartPage.enterShipmentCountry(testdata.country);
     const orderID = await thankYouPage.getOrderID();
     console.log("Order created successfully with Ref# ", orderID);
+    await thankYouPage.goToOrders();
+    await ordersPage.viewMyOrder(orderID);
 
 });

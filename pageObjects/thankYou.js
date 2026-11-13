@@ -22,6 +22,11 @@ class thankYou {
         return this.OrderId;
     }
 
+    async goToOrders(){
+        await this.myOrders.click();
+        await expect(this.page).toHaveURL(/\/dashboard\/myorders$/);
+    }
+
 }
 
 export default thankYou;
